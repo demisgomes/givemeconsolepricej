@@ -10,14 +10,18 @@ import java.util.*;
 
 @Service
 public class ConsolePriceService{
-    @Autowired
     private ExchangeRateService exchangeRateService;
 
-    @Autowired
     private TaxService taxService;
 
-    @Autowired
     private ConsolePriceRepository consolePriceRepository;
+
+    @Autowired
+    public ConsolePriceService(ExchangeRateService exchangeRateService, TaxService taxService, ConsolePriceRepository consolePriceRepository) {
+        this.exchangeRateService = exchangeRateService;
+        this.taxService = taxService;
+        this.consolePriceRepository = consolePriceRepository;
+    }
 
     public ConsolePrice registerConsolePrice(ConsolePriceRegisterRequest consolePriceRegisterRequest){
         double exchangeRate = exchangeRateService.getExchangeRate();
